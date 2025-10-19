@@ -9,19 +9,15 @@ from flask import (Flask, redirect, render_template, request,
 from pprint import pformat
 
 app = Flask(__name__)
-logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
 logger = logging.getLogger(__name__)
-logger.debug("1: DEBUG logging is enabled")
-logger.info("1: INFO logging is enabled")
-logger.warning("1: WARNING logging is enabled")
-logger.error("1: ERROR logging is enabled")
-logger.fatal("1: FATAL logging is enabled")
 logger.setLevel(logging.DEBUG)
-logger.debug("2: DEBUG logging is enabled")
-logger.info("2: INFO logging is enabled")
-logger.warning("2: WARNING logging is enabled")
-logger.error("2: ERROR logging is enabled")
-logger.fatal("2: FATAL logging is enabled")
+logger.addHandler(streamhandler := logging.StreamHandler(sys.stdout))
+streamhandler.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))
+logger.debug("DEBUG logging is enabled")
+logger.info("INFO logging is enabled")
+logger.warning("WARNING logging is enabled")
+logger.error("ERROR logging is enabled")
+logger.fatal("FATAL logging is enabled")
 
 
 @app.route('/')
