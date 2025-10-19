@@ -1,14 +1,18 @@
+import logging
 import os
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
-
+from pprint import pformat
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 @app.route('/')
 def index():
    print('Request for index page received')
+   logger.debug(pformat((request, dict(request.headers), dict(os.environ))))
    return render_template('index.html')
 
 @app.route('/favicon.ico')
