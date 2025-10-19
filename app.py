@@ -23,7 +23,7 @@ logger.fatal("FATAL logging is enabled")
 @app.route('/')
 def index():
     print('Request for index page received')
-    print(pformat((request, dict(request.headers), dict(os.environ))))
+    print(pformat((request,)))#, dict(request.headers), dict(os.environ))))
     for header, value in request.headers.items():
         try:
             value = base64.b64decode(value).decode('utf-8')
@@ -41,6 +41,7 @@ def index():
 
     try:
         user_token = request.headers.get("X-MS-TOKEN-AAD-ACCESS-TOKEN", "")
+        print("User token: "+user_token)
         user_groups = fetchUserGroups(user_token)
         print(f"User is member of {len(user_groups)} groups")
         for group in user_groups:
