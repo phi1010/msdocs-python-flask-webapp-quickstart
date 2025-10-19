@@ -10,8 +10,8 @@ from pprint import pformat
 
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-logger.addHandler(streamhandler := logging.StreamHandler(sys.stdout))
+logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().addHandler(streamhandler := logging.StreamHandler(sys.stdout))
 streamhandler.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))
 logger.debug("DEBUG logging is enabled")
 logger.info("INFO logging is enabled")
