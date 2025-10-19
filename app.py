@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 @app.route('/')
 def index():
    print('Request for index page received')
-   logger.debug(pformat((request, dict(request.headers), dict(os.environ))))
+   print(pformat((request, dict(request.headers), dict(os.environ))))
    return render_template('index.html')
 
 @app.route('/favicon.ico')
