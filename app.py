@@ -9,7 +9,7 @@ from flask import (Flask, redirect, render_template, request,
 from pprint import pformat
 
 app = Flask(__name__)
-logging.basicConfig(level=logging.DEBUG, stream=sys.stderr)
+logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
 logger = logging.getLogger(__name__)
 logger.debug("1: DEBUG logging is enabled")
 logger.info("1: INFO logging is enabled")
